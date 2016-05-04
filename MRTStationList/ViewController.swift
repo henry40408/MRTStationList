@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import QuartzCore
 
 class ViewController: UITableViewController {
 
@@ -19,11 +20,18 @@ class ViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        initForTableViewCell()
         fetchList()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    func initForTableViewCell() {
+        self.tableView.rowHeight = 44
+        self.tableView.allowsSelection = false
+        self.tableView.registerNib(UINib(nibName: "MRTStationListCell", bundle: nil), forCellReuseIdentifier: CELL_REUSE_IDENTIFIER)
     }
     
     func fetchList() {
@@ -54,17 +62,36 @@ class ViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = self.tableView.dequeueReusableCellWithIdentifier(CELL_REUSE_IDENTIFIER)
+        var cell = self.tableView.dequeueReusableCellWithIdentifier(CELL_REUSE_IDENTIFIER) as? MRTStationListCell
 
         if (cell == nil) {
-            cell = UITableViewCell(style: .Default, reuseIdentifier: CELL_REUSE_IDENTIFIER)
+            cell = NSBundle.mainBundle().loadNibNamed("MRTStationListCell", owner: self, options: nil)[0] as? MRTStationListCell
         }
         
         let title: String = lineTitles[indexPath.section]
 
         let line: MRTStationLine = lines[title]!
         let station: MRTStation = line.stations[indexPath.row]
-        cell?.textLabel?.text = station.name
+        cell?.nameLabel?.text = station.name
+
+        let keys = Array(station.serials.keys)
+        let values = Array(station.serials.values)
+
+        if station.serials.count < 2 {
+            cell?.lineLabel2?.hidden = true
+        } else {
+            cell?.lineLabel2?.text = values[1]
+            cell?.lineLabel2?.textColor = UIColor.whiteColor()
+            cell?.lineLabel2?.backgroundColor = cell?.colorMapping[keys[1]]
+            cell?.lineLabel2?.layer.masksToBounds = true
+            cell?.lineLabel2?.layer.cornerRadius = 4
+        }
+
+        cell?.lineLabel1?.text = values[0]
+        cell?.lineLabel1?.textColor = UIColor.whiteColor()
+        cell?.lineLabel1?.backgroundColor = cell?.colorMapping[keys[0]]
+        cell?.lineLabel1?.layer.masksToBounds = true
+        cell?.lineLabel1?.layer.cornerRadius = 4
 
         return cell!
     }
