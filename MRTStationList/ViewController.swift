@@ -13,7 +13,9 @@ class ViewController: UITableViewController {
     let CELL_REUSE_IDENTIFIER = "mrt_station"
 
     let stationList: MRTStationList = MRTStationList()
-    var data:[MRTStation] = []
+
+    var lines: [String:MRTStationLine] = [:]
+    var lineTitles: [String] { return lines.keys.sort() }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,25 +28,44 @@ class ViewController: UITableViewController {
     
     func fetchList() {
         _ = stationList.fetch()
-            .subscribeNext { stations in
-                self.data.removeAll()
-                for station in stations {
-                    self.data.append(station)
+            .subscribeNext { lines in
+                for (key, line) in lines {
+                    self.lines[key] = line
                 }
                 self.tableView.reloadData()
             }
     }
-
+    
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return lineTitles.count
+    }
+    
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return lineTitles[section]
+    }
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return data.count
+        let title: String = lineTitles[section]
+        if let line: MRTStationLine = lines[title] {
+            return line.stations.count
+        } else {
+            return 0
+        }
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier(CELL_REUSE_IDENTIFIER)
+        var cell = self.tableView.dequeueReusableCellWithIdentifier(CELL_REUSE_IDENTIFIER)
+
         if (cell == nil) {
-            cell = UITableViewCell.init(style: UITableViewCellStyle.Default, reuseIdentifier: CELL_REUSE_IDENTIFIER)
+            cell = UITableViewCell(style: .Default, reuseIdentifier: CELL_REUSE_IDENTIFIER)
         }
-        cell?.textLabel?.text = data[indexPath.row].name
+        
+        let title: String = lineTitles[indexPath.section]
+
+        let line: MRTStationLine = lines[title]!
+        let station: MRTStation = line.stations[indexPath.row]
+        cell?.textLabel?.text = station.name
+
         return cell!
     }
 }

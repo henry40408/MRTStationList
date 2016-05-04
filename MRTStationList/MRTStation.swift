@@ -6,13 +6,13 @@
 //  Copyright © 2016年 Heng-Yi Wu. All rights reserved.
 //
 
-struct Line {
-    var name: String
-    var serial: String
-}
-
 struct MRTStation {
     var name: String
     var coordinate: [Float]
-    var lines: [Line]
+    var serials: [String:String]
+}
+
+struct MRTStationLine {
+    var name: String
+    var stations: [MRTStation]
 }

@@ -16,8 +16,8 @@ enum MRTStationListError: ErrorType {
 }
 
 class MRTStationList {
-    func fetch() -> Observable<[MRTStation]> {
-        return Observable<[MRTStation]>.create { observer in
+    func fetch() -> Observable<[String:MRTStationLine]> {
+        return Observable<[String:MRTStationLine]>.create { observer in
             Alamofire.request(.GET, "https://goo.gl/U3UykG")
                 .responseData { response in
                     guard let data = response.data else {
@@ -28,21 +28,26 @@ class MRTStationList {
                     
                     let json = JSON(data: data)
 
-                    var stations:[MRTStation] = []
-                    
+                    var lines:[String:MRTStationLine] = [:]
+
                     for (_, item) in json {
-                        var station = MRTStation(name: item["name"].stringValue, coordinate: [item["coordinate"].arrayValue[0].floatValue, item["coordinate"].arrayValue[1].floatValue], lines: [])
-                        
+                        var station = MRTStation(name: item["name"].stringValue, coordinate: [item["coordinate"].arrayValue[0].floatValue, item["coordinate"].arrayValue[1].floatValue], serials: [:])
+
                         for (key, item_2) in item["lines"] {
-                            station.lines.append(Line(name: key, serial: item_2.stringValue))
+                            station.serials[key] = item_2.stringValue
+
+                            if lines[key] == nil {
+                                lines[key] = MRTStationLine(name: key, stations: [])
+                            }
+
+                            lines[key]!.stations.append(station)
                         }
-
-                        stations.append(station)
                     }
-
-                    observer.on(.Next(stations))
+                    
+                    observer.on(.Next(lines))
                     observer.on(.Completed)
                 }
+
             return NopDisposable.instance
         }
     }
