@@ -18,6 +18,7 @@
 		BA5912831CD8EE360084E34A /* MRTStationListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5912821CD8EE360084E34A /* MRTStationListTests.swift */; };
 		BA59128E1CD8EE360084E34A /* MRTStationListUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA59128D1CD8EE360084E34A /* MRTStationListUITests.swift */; };
 		BA717DB31CDA150500BB163A /* MRTStation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA717DB21CDA150500BB163A /* MRTStation.swift */; };
+		BAB90C861CDB2A4000D3373A /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB90C851CDB2A4000D3373A /* DetailViewController.swift */; };
 		BADFDB5C1CDA36B80022D606 /* MRTStationList.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADFDB5B1CDA36B80022D606 /* MRTStationList.swift */; };
 		BADFDB661CDA5D9A0022D606 /* MRTStationListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADFDB651CDA5D9A0022D606 /* MRTStationListCell.swift */; };
 /* End PBXBuildFile section */
@@ -61,6 +62,7 @@
 		BA59128D1CD8EE360084E34A /* MRTStationListUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MRTStationListUITests.swift; sourceTree = "<group>"; };
 		BA59128F1CD8EE360084E34A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BA717DB21CDA150500BB163A /* MRTStation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MRTStation.swift; sourceTree = "<group>"; };
+		BAB90C851CDB2A4000D3373A /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		BADFDB5B1CDA36B80022D606 /* MRTStationList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MRTStationList.swift; sourceTree = "<group>"; };
 		BADFDB651CDA5D9A0022D606 /* MRTStationListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MRTStationListCell.swift; sourceTree = "<group>"; };
 		EF89E887C61C36812E46DE15 /* Pods-MRTStationList.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MRTStationList.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MRTStationList/Pods-MRTStationList.debug.xcconfig"; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 			children = (
 				BA59126D1CD8EE360084E34A /* AppDelegate.swift */,
 				BA59126F1CD8EE360084E34A /* ViewController.swift */,
+				BAB90C851CDB2A4000D3373A /* DetailViewController.swift */,
 				BA5912711CD8EE360084E34A /* Main.storyboard */,
 				BA5912741CD8EE360084E34A /* Assets.xcassets */,
 				BA5912761CD8EE360084E34A /* LaunchScreen.storyboard */,
@@ -439,6 +442,7 @@
 				BADFDB661CDA5D9A0022D606 /* MRTStationListCell.swift in Sources */,
 				BADFDB5C1CDA36B80022D606 /* MRTStationList.swift in Sources */,
 				BA717DB31CDA150500BB163A /* MRTStation.swift in Sources */,
+				BAB90C861CDB2A4000D3373A /* DetailViewController.swift in Sources */,
 				BA5912701CD8EE360084E34A /* ViewController.swift in Sources */,
 				BA59126E1CD8EE360084E34A /* AppDelegate.swift in Sources */,
 			);

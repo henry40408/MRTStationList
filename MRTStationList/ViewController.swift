@@ -12,6 +12,7 @@ import QuartzCore
 class ViewController: UITableViewController {
 
     let cellReuseIdentifier = "MRTStationCell"
+    let detailSegue = "detailSegue"
 
     let stationList: MRTStationList = MRTStationList()
 
@@ -81,8 +82,7 @@ class ViewController: UITableViewController {
         }
 
         cell?.lineLabel1?.text = values[0]
-        cell?.lineLabel1?.textColor = UIColor.whiteColor()
-        cell?.lineLabel1?.backgroundColor = cell?.colorMapping[keys[0]]
+        cell?.lineLabel1?.backgroundColor = MRTStationListCell.colorMapping[keys[0]]
         cell?.lineLabel1?.layer.masksToBounds = true
         cell?.lineLabel1?.layer.cornerRadius = 4
 
@@ -92,12 +92,30 @@ class ViewController: UITableViewController {
         }
         
         cell?.lineLabel2?.text = values[1]
-        cell?.lineLabel2?.textColor = UIColor.whiteColor()
-        cell?.lineLabel2?.backgroundColor = cell?.colorMapping[keys[1]]
+        cell?.lineLabel2?.backgroundColor = MRTStationListCell.colorMapping[keys[1]]
         cell?.lineLabel2?.layer.masksToBounds = true
         cell?.lineLabel2?.layer.cornerRadius = 4
 
         return cell!
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == detailSegue {
+            let viewController = segue.destinationViewController as! DetailViewController
+
+            guard let indexPath = self.tableView.indexPathForSelectedRow else {
+                return
+            }
+
+            let title = self.lineTitles[indexPath.section]
+
+            guard let line = self.lines[title] else {
+                return
+            }
+
+            let station = line.stations[indexPath.row]
+            viewController.setup(station.name, line: line, station: station)
+        }
     }
 }
 

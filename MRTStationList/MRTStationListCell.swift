@@ -13,7 +13,7 @@ class MRTStationListCell: UITableViewCell {
     @IBOutlet weak var lineLabel1: UILabel?
     @IBOutlet weak var lineLabel2: UILabel?
 
-    let colorMapping:[String:UIColor] = [
+    static let colorMapping:[String:UIColor] = [
         "文湖線": UIColor(red: 158/255, green: 101/255, blue: 46/255, alpha: 1),
         "淡水信義線": UIColor(red: 203/255, green: 44/255, blue: 48/255, alpha: 1),
         "新北投支線": UIColor(red: 248/255, green: 144/255, blue: 165/255, alpha: 1),
