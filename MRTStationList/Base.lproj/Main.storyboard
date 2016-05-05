@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--MRT Stations-->
@@ -14,13 +15,52 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="mrt_station" id="oCq-db-YWJ" customClass="MRTStationListCell" customModule="MRTStationList" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="mrt_station" id="oCq-db-YWJ" customClass="MRTStationListCell" customModule="MRTStationList" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="92" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oCq-db-YWJ" id="QGW-ar-rQV">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0000" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZEU-sR-pf1">
+                                            <rect key="frame" x="170" y="11" width="50" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="50" id="x8y-l1-7jM"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Station name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j0Y-Jc-T8l">
+                                            <rect key="frame" x="16" y="11" width="101" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0000" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Daf-kB-cIE">
+                                            <rect key="frame" x="229" y="11" width="50" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="50" id="99V-2G-qBY"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="j0Y-Jc-T8l" firstAttribute="leading" secondItem="QGW-ar-rQV" secondAttribute="leadingMargin" constant="8" id="ITd-Ap-n9D"/>
+                                        <constraint firstItem="Daf-kB-cIE" firstAttribute="trailing" secondItem="QGW-ar-rQV" secondAttribute="trailingMargin" id="UEt-cI-AbU"/>
+                                        <constraint firstItem="Daf-kB-cIE" firstAttribute="centerY" secondItem="QGW-ar-rQV" secondAttribute="centerY" id="h9v-NH-WRV"/>
+                                        <constraint firstItem="ZEU-sR-pf1" firstAttribute="centerY" secondItem="QGW-ar-rQV" secondAttribute="centerY" id="kdh-1s-AL4"/>
+                                        <constraint firstItem="j0Y-Jc-T8l" firstAttribute="centerY" secondItem="QGW-ar-rQV" secondAttribute="centerY" id="opH-Pa-6Bv"/>
+                                        <constraint firstItem="Daf-kB-cIE" firstAttribute="leading" secondItem="ZEU-sR-pf1" secondAttribute="trailing" constant="9" id="pt3-3q-STk"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="lineLabel1" destination="Daf-kB-cIE" id="ydC-wN-5gt"/>
+                                    <outlet property="lineLabel2" destination="ZEU-sR-pf1" id="n1l-7k-WcZ"/>
+                                    <outlet property="nameLabel" destination="j0Y-Jc-T8l" id="ZUX-KL-uJR"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                     </tableView>

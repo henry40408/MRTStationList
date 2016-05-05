@@ -20,18 +20,11 @@ class ViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        initForTableViewCell()
         fetchList()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-    }
-    
-    func initForTableViewCell() {
-        self.tableView.rowHeight = 44
-        self.tableView.allowsSelection = false
-        self.tableView.registerNib(UINib(nibName: "MRTStationListCell", bundle: nil), forCellReuseIdentifier: CELL_REUSE_IDENTIFIER)
     }
     
     func fetchList() {
@@ -65,7 +58,7 @@ class ViewController: UITableViewController {
         var cell = self.tableView.dequeueReusableCellWithIdentifier(CELL_REUSE_IDENTIFIER) as? MRTStationListCell
 
         if (cell == nil) {
-            cell = NSBundle.mainBundle().loadNibNamed("MRTStationListCell", owner: self, options: nil)[0] as? MRTStationListCell
+            cell = MRTStationListCell()
         }
         
         let title: String = lineTitles[indexPath.section]
