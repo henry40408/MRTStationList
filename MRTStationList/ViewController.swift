@@ -11,7 +11,7 @@ import QuartzCore
 
 class ViewController: UITableViewController {
 
-    let CELL_REUSE_IDENTIFIER = "mrt_station"
+    let cellReuseIdentifier = "MRTStationCell"
 
     let stationList: MRTStationList = MRTStationList()
 
@@ -55,29 +55,29 @@ class ViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = self.tableView.dequeueReusableCellWithIdentifier(CELL_REUSE_IDENTIFIER) as? MRTStationListCell
+        var cell = self.tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier) as? MRTStationListCell
 
         if (cell == nil) {
             cell = MRTStationListCell()
         }
-        
+
         let title: String = lineTitles[indexPath.section]
 
-        let line: MRTStationLine = lines[title]!
-        let station: MRTStation = line.stations[indexPath.row]
+        guard let line: MRTStationLine = lines[title] else {
+            return cell!
+        }
+
+        guard let station: MRTStation = line.stations[indexPath.row] else {
+            return cell!
+        }
+
         cell?.nameLabel?.text = station.name
 
         let keys = Array(station.serials.keys)
         let values = Array(station.serials.values)
-
-        if station.serials.count < 2 {
-            cell?.lineLabel2?.hidden = true
-        } else {
-            cell?.lineLabel2?.text = values[1]
-            cell?.lineLabel2?.textColor = UIColor.whiteColor()
-            cell?.lineLabel2?.backgroundColor = cell?.colorMapping[keys[1]]
-            cell?.lineLabel2?.layer.masksToBounds = true
-            cell?.lineLabel2?.layer.cornerRadius = 4
+        
+        guard values.count > 0 else {
+            return cell!
         }
 
         cell?.lineLabel1?.text = values[0]
@@ -85,6 +85,17 @@ class ViewController: UITableViewController {
         cell?.lineLabel1?.backgroundColor = cell?.colorMapping[keys[0]]
         cell?.lineLabel1?.layer.masksToBounds = true
         cell?.lineLabel1?.layer.cornerRadius = 4
+
+        guard values.count > 1 else {
+            cell?.lineLabel2?.hidden = true
+            return cell!
+        }
+        
+        cell?.lineLabel2?.text = values[1]
+        cell?.lineLabel2?.textColor = UIColor.whiteColor()
+        cell?.lineLabel2?.backgroundColor = cell?.colorMapping[keys[1]]
+        cell?.lineLabel2?.layer.masksToBounds = true
+        cell?.lineLabel2?.layer.cornerRadius = 4
 
         return cell!
     }

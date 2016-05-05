@@ -15,7 +15,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="mrt_station" id="oCq-db-YWJ" customClass="MRTStationListCell" customModule="MRTStationList" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="MRTStationCell" id="oCq-db-YWJ" customClass="MRTStationListCell" customModule="MRTStationList" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="92" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oCq-db-YWJ" id="QGW-ar-rQV">
@@ -60,6 +60,7 @@
                                     <outlet property="lineLabel1" destination="Daf-kB-cIE" id="ydC-wN-5gt"/>
                                     <outlet property="lineLabel2" destination="ZEU-sR-pf1" id="n1l-7k-WcZ"/>
                                     <outlet property="nameLabel" destination="j0Y-Jc-T8l" id="ZUX-KL-uJR"/>
+                                    <segue destination="rq9-Oq-2T2" kind="push" identifier="detailSegue" id="Xpi-1a-rfr"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -69,6 +70,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="681" y="215"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Zzp-sq-hWO">
+            <objects>
+                <viewController id="rq9-Oq-2T2" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="3y6-l5-c3w"/>
+                        <viewControllerLayoutGuide type="bottom" id="fL0-Yl-nmB"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="QVe-6w-0t7">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="fgJ-6j-08V"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="m3v-il-q7O" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1121" y="215"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="MJm-fW-5lk">
