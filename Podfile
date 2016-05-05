@@ -4,6 +4,8 @@
 use_frameworks!
 
 target 'MRTStationList' do
+  pod 'Alamofire', '~> 3.3'
+  pod 'RxSwift', '~> 2.4'
   pod 'SwiftyJSON', git: 'https://github.com/SwiftyJSON/SwiftyJSON.git', tag: '2.3.1'
 end
 
@@ -14,4 +16,3 @@ end
 target 'MRTStationListUITests' do
 
 end
-
